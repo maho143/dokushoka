@@ -26,8 +26,10 @@ class BooksController extends Controller
             foreach ($rws_response->getData()['Items'] as $rws_item) {
                 $item = new Book();
                 $item->isbn = $rws_item['Item']['isbn'];
-                $item->name = $rws_item['Item']['title'];
+                $item->title = $rws_item['Item']['title'];
                 $item->url = $rws_item['Item']['itemUrl'];
+                $item->publisherName = $rws_item['Item']['publisherName'];
+                $item->author = $rws_item['Item']['author'];
                 $item->image_url = str_replace('?_ex=120x120', '', $rws_item['Item']['mediumImageUrl']);
                 $items[] = $item;
             }

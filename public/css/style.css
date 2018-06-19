@@ -71,3 +71,12 @@ p.book-title {
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
+
+/* book */
+.book .panel-body {
+    height: 120px;
+}
+.book .buttons form {
+    display: inline-block;
+    margin: 0 5px;
+}

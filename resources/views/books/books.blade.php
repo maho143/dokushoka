@@ -8,7 +8,13 @@
                             <img src="{{ $item->image_url }}" alt="">
                         </div>
                         <div class="panel-body">
-                            <p class="book-title"><a href="#">{{ $item->name }}</a></p>
+                            <p class="book-title"><a href="#">{{ $item->title }}</a></p>
+                            <div class="buttons text-center">
+                                @include('books.want_button', ['item' => $item])
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <p class=""></p>
                         </div>
                     </div>
                 </div>
