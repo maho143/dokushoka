@@ -1,34 +1,32 @@
+
 @extends('layouts.app')
 
 @section('content')
 <div class="row">
-    <div class="col-xs-offset-3 col-xs-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">会員登録</div>
-            <div class="panel-body">
+    <div class="col-md-6 offset-md-3">
+       <div class="card text-center">
+            <div class="card-heading font-weight-bold h2 ">Signup</div>
+            <div class="card-body">
                 {!! Form::open(['route' => 'signup.post']) !!}
                     <div class="form-group">
-                        {!! Form::label('name', 'お名前') !!}
-                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                        {!! Form::text('name', old('name'), ['class' => 'form-control', 'placeholder' => 'Name']) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('email', 'メールアドレス') !!}
-                        {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                        {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'Email Address']) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('password', 'パスワード') !!}
-                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        
+                        {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Passward']) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! Form::label('password_confirmation', 'パスワード（確認）') !!}
-                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                        {!! Form::password('password_confirmation', ['class' => 'form-control', 'placeholder' => 'Confirm Passward']) !!}
                     </div>
 
-                    <div class="text-right">
-                        {!! Form::submit('登録する', ['class' => 'btn btn-success']) !!}
+                    <div class="text-center">
+                        {!! Form::submit('Register', ['class' => 'btn btn-info w-100']) !!}
                     </div>
                 {!! Form::close() !!}
             </div>

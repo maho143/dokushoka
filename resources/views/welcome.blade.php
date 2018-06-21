@@ -12,5 +12,6 @@
 @endsection
 
 @section('content')
-    テスト
+    @include('books.books')
+    {!! $items->render() !!}
 @endsection

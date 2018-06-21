@@ -23,8 +23,13 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::resource('books', 'BooksController', ['only' => ['create']]);
+    Route::resource('books', 'BooksController', ['only' => ['create', 'show']]);
     Route::post('want', 'BookUserController@want')->name('book_user.want');
     Route::delete('want', 'BookUserController@dont_want')->name('book_user.dont_want');
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+});
+
+Route::group(['middleware' => ['auth']], function () {    
+    Route::post('read', 'BookUserController@read')->name('book_user.read');
+    Route::delete('read', 'BookUserController@dont_read')->name('book_user.dont_read');
 });

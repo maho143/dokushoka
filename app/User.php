@@ -68,11 +68,56 @@ class User extends Authenticatable
 
     public function is_wanting($itemIdOrCode)
     {
-        if (is_numeric($itemIdOrCode)<10) {
-            $item_id_exists = $this->want_books()->where('book_id', $itemIdOrCode)->exists();
-            return $item_id_exists;
+        if (strlen($itemIdOrCode)<10) {
+            $item_isbn_exists = $this->want_books()->where('book_id', $itemIdOrCode)->exists();
+            return $item_isbn_exists;
         } else {
             $item_isbn_exists = $this->want_books()->where('isbn', $itemIdOrCode)->exists();
+            return $item_isbn_exists;
+        }
+    }
+    
+    public function read_books()
+    {
+        return $this->books()->where('type', 'read');
+    }
+
+    public function read($itemId)
+    {
+        // Is the user already "read"?
+        $exist = $this->is_reading($itemId);
+
+        if ($exist) {
+            // do nothing
+            return false;
+        } else {
+            // do "want"
+            $this->books()->attach($itemId, ['type' => 'read']);
+            return true;
+        }
+    }
+
+    public function dont_read($itemId)
+    {
+        // Is the user already "read"?
+        $exist = $this->is_reading($itemId);
+
+        if ($exist) {
+            // remove "read"
+            \DB::delete("DELETE FROM book_user WHERE user_id = ? AND book_id = ? AND type = 'read'", [\Auth::user()->id, $itemId]);
+        } else {
+            // do nothing
+            return false;
+        }
+    }
+
+    public function is_reading($itemIdOrCode)
+    {
+        if (strlen($itemIdOrCode)<10) {
+            $item_isbn_exists = $this->read_books()->where('book_id', $itemIdOrCode)->exists();
+            return $item_isbn_exists;
+        } else {
+            $item_isbn_exists = $this->read_books()->where('isbn', $itemIdOrCode)->exists();
             return $item_isbn_exists;
         }
     }

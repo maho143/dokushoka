@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['isbn', 'name', 'url', 'image_url'];
+    protected $fillable = ['isbn', 'name', 'url', 'image_url', 'author', 'itemCaption'];
 
     public function users()
     {
@@ -16,5 +16,10 @@ class Book extends Model
     public function want_users()
     {
         return $this->users()->where('type', 'want');
+    }
+    
+    public function read_users()
+    {
+        return $this->users()->where('type', 'read');
     }
 }

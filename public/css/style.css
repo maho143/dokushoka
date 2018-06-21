@@ -1,20 +1,26 @@
 @charset "utf-8";
 
+.wf-mplus1p {
+    font-family: "Mplus 1p"; 
+}
 /* body */
+
 body {
     background: #f2f2f2;
+}
+
+.container{
+    margin-top: 100px;
 }
 footer {
     margin-top: 40px;
 }
 
+
 /* navbar */
-.navbar {
-    background-color: #fff;
-}
-.navbar-header img {
-    margin-top: 5px;
-    height: 40px;
+
+.navbar-extend {
+    background-color: transparent;
 }
 
 /* cover */
@@ -22,7 +28,7 @@ footer {
     margin-top: -20px;
     margin-bottom: 20px;
     width: 100%;
-    height: 90vh;
+    height: 95vh;
     background: url("/images/book.jpg") center center no-repeat;
     background-size: cover;
 }
@@ -52,15 +58,54 @@ footer {
 .search {
     margin-bottom: 20px;
 }
-
 /* book */
-.book .panel-body {
-    height: 70px;
+.book a {
+    text-decoration: none;
+    color: white;
 }
-.book .panel-heading {
-    height: 250px;
+
+.book a:hover {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
 }
-.book .panel-heading img {
+
+.book .card {
+    overflow:		hidden;
+    position:		relative;	/* 相対位置指定 */
+    
+}
+
+.book .card img{
+    max-height: 100%;
+}
+.book .card-body {
+    width:			100%;
+	height:			100%;
+	max-height: 100%;
+	position:		absolute;	/* 絶対位置指定 */
+	top:			0;
+	left:			0;
+	opacity:		0;	/* マスクを表示しない */
+	background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
+	-webkit-transition:	all 0.2s ease;
+	transition:		all 0.2s ease;
+}
+.book .card-body .caption{
+    font-size:		130%;
+	text-align: 		center;
+	padding-top:		80px;
+	color:			#fff;
+}
+
+.book .card:hover .card-body{
+    background-color: black;
+    opacity: 0.9;
+}
+
+
+
+.book .card img {
     height: 100%;
     max-width: 100%;
 }
@@ -71,12 +116,43 @@ p.book-title {
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
+.book .buttons{
+    margin-bottom: 15px;
+}
 
-/* book */
-.book .panel-body {
-    height: 120px;
+
+
+
+/* users */
+.use
+r-profile .name {
+    margin-bottom: 20px;
 }
-.book .buttons form {
-    display: inline-block;
-    margin: 0 5px;
+.user-profile .name h1 {
+    text-shadow: 1px 1px 1px #fff;
+    font-weight: bold;
 }
+.user-profile .status ul {
+    margin: 0 auto 10px;
+    padding: 0;
+    display: table;
+}
+.user-profile .status ul li {
+    width: 120px;
+    padding: 5px 0;
+    border-right: 1px solid #ddd;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color: #777;
+}
+.user-profile .status ul li:last-child {
+    border: none;
+}
+.user-profile .status ul li .status-label {
+    font-size: 12px;
+}
+.user-profile .status ul li .status-value {
+    font-size: 18px;
+}
+

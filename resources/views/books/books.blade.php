@@ -3,22 +3,28 @@
         @foreach ($items as $item)
             <div class="book">
                 <div class="col-md-3 col-sm-4 col-xs-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading text-center">
-                            <img src="{{ $item->image_url }}" alt="">
-                        </div>
-                        <div class="panel-body">
-                            <p class="book-title"><a href="#">{{ $item->title }}</a></p>
-                            <div class="buttons text-center">
-                                @include('books.want_button', ['item' => $item])
+                   <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{{ $item->image_url }}" alt="Card image cap">
+                        <div class="card-body">
+                        <div class="caption">
+                        @if ($item->id)
+                            <a href="{{ route('books.show', $item->id) }}"><p class="book-title">{{ $item->name }}</p></a>
+                        @else
+                            <p class="book-title">{{ $item->name }}</p>
+                        @endif
+                            <div class="buttons btn-group">
+                                @if (Auth::check())
+                                    @include('books.want_button', ['item' => $item])
+                                    @include('books.read_button', ['item' => $item])
+                                    <a href="{{ $item->url }}" target="_blank">{!! Form::button('<i class="fas fa-shopping-cart fa-2x"></i>', ['type' => 'submit', 'class' => 'btn btn-link text-success']) !!}</a>
+                                @endif
                             </div>
                         </div>
-                        <div class="panel-body">
-                            <p class=""></p>
                         </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         @endforeach
     </div>
 @endif
+

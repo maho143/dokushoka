@@ -17,15 +17,15 @@ class BookUserController extends Controller
         // Search items from "isbn"
         $client = new \RakutenRws_Client();
         $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
-        $rws_response = $client->execute('BooksTotalSearch', [
+        $rws_response = $client->execute('BooksBookSearch', [
             'isbn' => $isbn,
         ]);
-        $rws_item = $rws_response->getData()['Items'];
+        $rws_item = $rws_response->getData()['Items'][0]['Item'];
 
         // create Item, or get Item if an item is found
         $item = Book::firstOrCreate([
             'isbn' => $rws_item['isbn'],
-            'title' => $rws_item['title'],
+            'name' => $rws_item['title'],
             'url' => $rws_item['itemUrl'],
             // remove "?_ex=128x128" because its size is defined
             'image_url' => str_replace('?_ex=120x120', '', $rws_item['mediumImageUrl']),
@@ -41,8 +41,45 @@ class BookUserController extends Controller
         $isbn = request()->isbn;
 
         if (\Auth::user()->is_wanting($isbn)) {
-            $title = Book::where('isbn', $tite)->first()->id;
-            \Auth::user()->dont_want($title);
+            $itemId = Book::where('isbn', $isbn)->first()->id;
+            \Auth::user()->dont_want($itemId);
+        }
+        return redirect()->back();
+    }
+    
+    public function read()
+    {
+        $isbn = request()->isbn;
+
+        // Search items from "isbn"
+        $client = new \RakutenRws_Client();
+        $client->setApplicationId(env('RAKUTEN_APPLICATION_ID'));
+        $rws_response = $client->execute('BooksBookSearch', [
+            'isbn' => $isbn,
+        ]);
+        $rws_item = $rws_response->getData()['Items'][0]['Item'];
+
+        // create Item, or get Item if an item is found
+        $item = Book::firstOrCreate([
+            'isbn' => $rws_item['isbn'],
+            'name' => $rws_item['title'],
+            'url' => $rws_item['itemUrl'],
+            // remove "?_ex=128x128" because its size is defined
+            'image_url' => str_replace('?_ex=120x120', '', $rws_item['mediumImageUrl']),
+        ]);
+
+        \Auth::user()->read($item->id);
+
+        return redirect()->back();
+    }
+
+    public function dont_read()
+    {
+        $isbn = request()->isbn;
+
+        if (\Auth::user()->is_reading($isbn)) {
+            $itemId = Book::where('isbn', $isbn)->first()->id;
+            \Auth::user()->dont_read($itemId);
         }
         return redirect()->back();
     }

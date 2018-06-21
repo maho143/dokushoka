@@ -2,23 +2,21 @@
 
 @section('content')
 <div class="row">
-    <div class="col-xs-offset-3 col-xs-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">ログイン</div>
-            <div class="panel-body">
+    <div class="col-md-6 offset-md-3">
+       <div class="card text-center">
+            <div class="card-heading font-weight-bold h2 ">Login</div>
+            <div class="card-body">
                 {!! Form::open(['route' => 'login.post']) !!}
                     <div class="form-group">
-                        {!! form::label('email', 'メールアドレス') !!}
-                        {!! form::email('email', old('email'), ['class' => 'form-control']) !!}
+                        {!! form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'Email Address']) !!}
                     </div>
 
                     <div class="form-group">
-                        {!! form::label('password', 'パスワード') !!}
-                        {!! form::password('password', ['class' => 'form-control']) !!}
+                        {!! form::password('password', ['class' => 'form-control',  'placeholder' => 'Passward']) !!}
                     </div>
 
-                    <div class="text-right">
-                        {!! form::submit('ログイン', ['class' => 'btn btn-success']) !!}
+                    <div class="text-center">
+                        {!! form::submit('Login', ['class' => 'btn btn-info w-100']) !!}
                     </div>
                 {!! form::close() !!}
             </div>
