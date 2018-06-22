@@ -1,6 +1,6 @@
 @if ($items)
     <div class="row">
-        @foreach ($items as $item)
+        @foreach ($items as $key => $item)
             <div class="book">
                 <div class="col-md-3 col-sm-4 col-xs-12">
                    <div class="card" style="width: 18rem;">
@@ -10,7 +10,7 @@
                         @if ($item->id)
                             <a href="{{ route('books.show', $item->id) }}"><p class="book-title">{{ $item->name }}</p></a>
                         @else
-                            <p class="book-title">{{ $item->name }}</p>
+                            <a href="{{ $item->url }}"><p class="book-title">{{ $item->name }}</p></a>
                         @endif
                             <div class="buttons btn-group">
                                 @if (Auth::check())
@@ -21,6 +21,11 @@
                             </div>
                         </div>
                         </div>
+                        @if (isset($item->count))
+                            <div class="card-footer">
+                                <p class="text-center">{{ $key+1 }}位:{{ $item->count}}people </p>
+                            </div>
+                        @endif
                     </div> 
                 </div>
             </div>

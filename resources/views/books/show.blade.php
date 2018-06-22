@@ -1,18 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+<h1 class="book-title text-left ml-3 mt-10 ">{{ $item->name }}</h1>
+
+    <div class="row" style="margin-top: 50px;">
         <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-3">
             <div class="book">
                 <div class="card" >
-                      <img class="card-img-top" src="{{ $item->image_url }}" alt="Card image cap">
+                      <img class="card-img-top mb-3" src="{{ $item->image_url }}" alt="Card image cap">
                       <div class="card-body　h5">
-                        @if ($item->id)
-                            <p class="book-title">{{ $item->name }}</a></p>
-                        @else
-                            <p class="book-title">{{ $item->name }}</p>
-                        @endif
-                        <div class="card-text">
+                        <div class="card-text text-center">
                             <div class="buttons btn-group">
                                 @if (Auth::check())
                                     @include('books.want_button', ['item' => $item])
@@ -20,16 +17,21 @@
                                     <a href="{{ $item->url }}" target="_blank">{!! Form::button('<i class="fas fa-shopping-cart fa-2x"></i>', ['type' => 'submit', 'class' => 'btn btn-link text-success']) !!}</a>
                                 @endif
                             </div>
-                            <p class="book-isbn"><a href="#">{{ $item->isbn }}</a></p>
+                            <div class="book-information">
+                                <p class="book-isbn">{{ $item->isbn }}</p>
+                                <p class="book-author">{{ $item->author }}</p>
+                            </div>
                         </div>
+                        
                       </div>
                 </div> 
-            </div>
+            </div> 
         </div>
 
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="want-users">
                 <div class="card">
+                    
                     <div class="card-heading text-center">
                         読みたい！したドクショカ
                     </div>

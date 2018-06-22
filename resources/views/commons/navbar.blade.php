@@ -9,8 +9,19 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('books.create') }}"><i class="fas fa-book-open"></i>   add</a>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-chart-line"></i>   Ranking
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="{{ route('ranking.want') }}"><i class="fas fa-heart text-danger"></i>   Ranking</a>
+          <a class="dropdown-item" href="{{ route('ranking.read') }}"><i class="fas fa-bookmark text-info"></i>   Ranking</a>
+        </div>
+      </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-chart-line"></i>    Ranking</a>
+        <a class="nav-link" href="{{ route('users.index', 'Users') }}">User</a>
+      </li>
+        <a class="nav-link" href="#"></a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="gravatar">

@@ -27,6 +27,9 @@ class BookUserController extends Controller
             'isbn' => $rws_item['isbn'],
             'name' => $rws_item['title'],
             'url' => $rws_item['itemUrl'],
+            'publisherName' => $rws_item['publisherName'],
+            'author' => $rws_item['author'],
+            'itemCaption' => $rws_item['itemCaption'],
             // remove "?_ex=128x128" because its size is defined
             'image_url' => str_replace('?_ex=120x120', '', $rws_item['mediumImageUrl']),
         ]);
@@ -64,6 +67,9 @@ class BookUserController extends Controller
             'isbn' => $rws_item['isbn'],
             'name' => $rws_item['title'],
             'url' => $rws_item['itemUrl'],
+            'publisherName' => $rws_item['publisherName'],
+            'author' => $rws_item['author'],
+            'itemCaption' => $rws_item['itemCaption'],
             // remove "?_ex=128x128" because its size is defined
             'image_url' => str_replace('?_ex=120x120', '', $rws_item['mediumImageUrl']),
         ]);

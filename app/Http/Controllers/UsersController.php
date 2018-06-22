@@ -23,4 +23,13 @@ class UsersController extends Controller
             'count_read' => $count_read,
         ]);
     }
+    
+    public function index()
+    {
+        $users = User::paginate(10);
+        
+        return view('users.index', [
+            'users' => $users,
+        ]);
+    }
 }

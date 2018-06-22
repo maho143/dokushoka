@@ -21,7 +21,7 @@ class BooksController extends Controller
             $rws_response = $client->execute('BooksTotalSearch', [
                 'keyword' => $keyword,
                 'imageFlag' => 1,
-                'hits' => 20,
+                
             ]);
             
             // Creating "Item" instance to make it easy to handle.（not saving）
