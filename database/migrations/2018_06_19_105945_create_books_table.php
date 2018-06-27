@@ -10,7 +10,7 @@ class CreateBooksTable extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+     **/
     public function up()
     {
         Schema::create('books', function (Blueprint $table) {
@@ -21,7 +21,7 @@ class CreateBooksTable extends Migration
             $table->string('image_url');
             $table->string('author');
             $table->string('publisherName');
-            $table->string('itemCaption');
+            $table->text('itemCaption');
             $table->timestamps();
         });
     }

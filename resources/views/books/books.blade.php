@@ -1,8 +1,8 @@
 @if ($items)
     <div class="row">
         @foreach ($items as $key => $item)
-            <div class="book">
-                <div class="col-md-3 col-sm-4 col-xs-12">
+            <div class="col-md-3">
+                <div class="book">
                    <div class="card" style="width: 18rem;">
                       <img class="card-img-top" src="{{ $item->image_url }}" alt="Card image cap">
                         <div class="card-body">
@@ -14,9 +14,12 @@
                         @endif
                             <div class="buttons btn-group">
                                 @if (Auth::check())
-                                    @include('books.want_button', ['item' => $item])
+                                    @include('books.want_button', ['iteum' => $item])
                                     @include('books.read_button', ['item' => $item])
                                     <a href="{{ $item->url }}" target="_blank">{!! Form::button('<i class="fas fa-shopping-cart fa-2x"></i>', ['type' => 'submit', 'class' => 'btn btn-link text-success']) !!}</a>
+                                    @if (Auth::user()->is_wanting($item->isbn) || Auth::user()->is_reading($item->isbn))
+                                        {!! link_to_route('reviews.create', '書評を書く', ['item_id' => $item->id],  ['class' => 'btn btn-block btn-primary']) !!}
+                                    @endif
                                 @endif
                             </div>
                         </div>

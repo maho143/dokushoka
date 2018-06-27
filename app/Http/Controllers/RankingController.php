@@ -12,7 +12,7 @@ class RankingController extends Controller
 {
     public function want()
     {
-        $items = \DB::table('book_user')->join('books', 'book_user.book_id', '=', 'books.id')->select('books.*', \DB::raw('COUNT(*) as count'))->where('type', 'want')->groupBy('books.id', 'books.isbn', 'books.name', 'books.url', 'books.image_url','books.created_at', 'books.updated_at')->orderBy('count', 'DESC')->take(10)->get();
+        $items = \DB::table('book_user')->join('books', 'book_user.book_id', '=', 'books.id')->select('books.*', \DB::raw('COUNT(*) as count'))->where('type', 'want')->groupBy('books.id', 'books.isbn', 'books.name', 'books.url', 'books.image_url', 'books.author', 'books.publisherName', 'books.itemCaption', 'books.created_at', 'books.updated_at')->orderBy('count', 'DESC')->take(10)->get();
 
         return view('ranking.want', [
             'items' => $items,
@@ -21,7 +21,7 @@ class RankingController extends Controller
     
     public function read()
     {
-        $items = \DB::table('book_user')->join('books', 'book_user.book_id', '=', 'books.id')->select('books.*', \DB::raw('COUNT(*) as count'))->where('type', 'want')->groupBy('books.id', 'books.isbn', 'books.name', 'books.url', 'books.image_url','books.created_at', 'books.updated_at')->orderBy('count', 'DESC')->take(10)->get();
+        $items = \DB::table('book_user')->join('books', 'book_user.book_id', '=', 'books.id')->select('books.*', \DB::raw('COUNT(*) as count'))->where('type', 'want')->groupBy('books.id', 'books.isbn', 'books.name', 'books.url', 'books.image_url', 'books.author', 'books.publisherName', 'books.itemCaption', 'books.created_at', 'books.updated_at')->orderBy('count', 'DESC')->take(10)->get();
 
         return view('ranking.read', [
             'items' => $items,
