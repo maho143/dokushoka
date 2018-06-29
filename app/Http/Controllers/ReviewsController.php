@@ -31,7 +31,7 @@ class ReviewsController extends Controller
     public function create(Request $request)
     {
         $user=\Auth::user();
-        $item=Book::find($request->book_id);
+        $item=Book::find($request->item_id);
         return view('reviews.create',[
         'user' => $user,
         'item' => $item,

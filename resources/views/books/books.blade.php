@@ -18,7 +18,7 @@
                                     @include('books.read_button', ['item' => $item])
                                     <a href="{{ $item->url }}" target="_blank">{!! Form::button('<i class="fas fa-shopping-cart fa-2x"></i>', ['type' => 'submit', 'class' => 'btn btn-link text-success']) !!}</a>
                                     @if (Auth::user()->is_wanting($item->isbn) || Auth::user()->is_reading($item->isbn))
-                                        {!! link_to_route('reviews.create', '書評を書く', ['item_id' => $item->id],  ['class' => 'btn btn-block btn-primary']) !!}
+                                        {!! link_to_route('reviews.create', '書評を書く', ['item_id' => $item->id],  ['class' => 'btn btn-s btn-block btn-primary']) !!}
                                     @endif
                                 @endif
                             </div>

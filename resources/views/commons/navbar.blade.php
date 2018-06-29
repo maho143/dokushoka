@@ -25,13 +25,14 @@
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="gravatar">
-                <img src="{{ Gravatar::src(Auth::user()->email, 20) . '&d=mm' }}" alt="" class="img-circle">
+            <img src="{{ Gravatar::src(Auth::user()->email, 20) . '&d=mm' }}" alt="" class="rounded-circle">
           </span>
           {{ Auth::user()->name }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">My Page</a>
-          <a class="dropdown-item" href="{{ route('logout.get') }}">ログアウト</a>
+            <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id) }}">My Page</a>  
+            <a  class="dropdown-item"  href="{{ route('users.upload', Auth::user()->id) }}" class="dropdown-item"><i class="fas fa-cog"></i> Setting</a>
+            <a class="dropdown-item" href="{{ route('logout.get') }}">ログアウト</a>  
         </div>
       </li>
       @else
